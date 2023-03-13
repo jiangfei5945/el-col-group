@@ -3,14 +3,8 @@ const dealNull = (val) => {
   return val || (val === 0 ? 0 : " - ");
 };
 
-const createColTooltip = (h, info) =>
-  h("el-tooltip", { props: { effect: "light" } }, [
-    h("i", { class: "col-tooltip" }),
-    h("span", { slot: "content", domProps: { innerHTML: info } }),
-  ]);
-
 const createColumn = (h, columnConfig) => {
-  const { columnProps, render, children, info } = columnConfig;
+  const { columnProps, render, children } = columnConfig;
 
   let option = {
     props: { ...columnProps },
@@ -28,16 +22,6 @@ const createColumn = (h, columnConfig) => {
         ? formatter(row, column, row[prop], $index)
         : row[prop];
       return h("span", {}, [dealNull(val)]);
-    };
-  }
-  if (info) {
-    option.props.renderHeader = (h, { column, $index }) => {
-      return [
-        columnProps.renderHeader
-          ? columnProps.renderHeader(h, { column, $index })
-          : column.label,
-        createColTooltip(h, info),
-      ];
     };
   }
   let childNodes = [];
@@ -63,7 +47,9 @@ export default {
       props: { columns },
     } = context;
 
-    return columns.map((column) => {
+    const displayColumnOptions = columns.filter((v) => v.visible !== false);
+
+    return displayColumnOptions.map((column) => {
       return createColumn(createElement, column);
     });
   },
