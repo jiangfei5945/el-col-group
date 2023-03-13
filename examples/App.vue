@@ -44,26 +44,20 @@ export default {
     tableColumnOption() {
       return [
         {
-          columnProps: {
-            label: "App",
-            prop: "appName",
-          },
+          label: "App",
+          prop: "appName",
         },
         {
           visible: !this.checked,
-          columnProps: {
-            label: "系统",
-            prop: "appType",
-            renderHeader: (h, { column }) => {
-              return h("div", { style: { color: "red" } }, [column.label]);
-            },
+          label: "系统",
+          prop: "appType",
+          renderHeader: (h, { column }) => {
+            return h("div", { style: { color: "red" } }, [column.label]);
           },
         },
         {
-          columnProps: {
-            label: `季度平均崩溃率`,
-            prop: "quartAve",
-          },
+          label: `季度平均崩溃率`,
+          prop: "quartAve",
           render: (h, row) => {
             return h(
               "span",

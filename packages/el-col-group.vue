@@ -4,12 +4,12 @@ const dealNull = (val) => {
 };
 
 const createColumn = (h, columnConfig) => {
-  const { columnProps, render, children } = columnConfig;
+  const { render, children } = columnConfig;
 
   let option = {
-    props: { ...columnProps },
+    props: { ...columnConfig },
     scopedSlots: {},
-    key: columnProps.label,
+    key: columnConfig.label,
   };
   if (render) {
     option.scopedSlots.default = (props) => {
@@ -17,7 +17,7 @@ const createColumn = (h, columnConfig) => {
     };
   } else {
     option.scopedSlots.default = ({ row, column, $index }) => {
-      const { formatter, prop } = columnProps;
+      const { formatter, prop } = columnConfig;
       const val = formatter
         ? formatter(row, column, row[prop], $index)
         : row[prop];
