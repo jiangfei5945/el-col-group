@@ -1,8 +1,4 @@
 <script>
-const dealNull = (val) => {
-  return val || (val === 0 ? 0 : " - ");
-};
-
 const createColumn = (h, columnConfig) => {
   const { render, children } = columnConfig;
 
@@ -21,7 +17,7 @@ const createColumn = (h, columnConfig) => {
       const val = formatter
         ? formatter(row, column, row[prop], $index)
         : row[prop];
-      return h("span", {}, [dealNull(val)]);
+      return h("span", {}, [val]);
     };
   }
   let childNodes = [];
