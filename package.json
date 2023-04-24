@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": false,
   "license":"MIT",
+  "repository":"https://github.com/jiangfei5945/el-col-group",
   "main": "./lib/ElColGroup.umd.js",
   "scripts": {
     "serve": "vue-cli-service serve",
